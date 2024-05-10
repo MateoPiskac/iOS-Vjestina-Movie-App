@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C7167132BC7FC1F00AA944B /* MovieDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7167122BC7FC1F00AA944B /* MovieDetailsView.swift */; };
 		2C78ECFF2BBC3A4B00F78116 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C78ECFE2BBC3A4B00F78116 /* AppDelegate.swift */; };
 		2C78ED012BBC3A4B00F78116 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C78ED002BBC3A4B00F78116 /* SceneDelegate.swift */; };
 		2C78ED032BBC3A4B00F78116 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C78ED022BBC3A4B00F78116 /* ViewController.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2C7167122BC7FC1F00AA944B /* MovieDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsView.swift; sourceTree = "<group>"; };
 		2C78ECFB2BBC3A4B00F78116 /* MovieApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C78ECFE2BBC3A4B00F78116 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2C78ED002BBC3A4B00F78116 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -70,6 +72,7 @@
 				2C78ED002BBC3A4B00F78116 /* SceneDelegate.swift */,
 				2C78ED022BBC3A4B00F78116 /* ViewController.swift */,
 				2C78ED1F2BC4669400F78116 /* MovieDetailsViewController.swift */,
+				2C7167122BC7FC1F00AA944B /* MovieDetailsView.swift */,
 				2C78ED042BBC3A4B00F78116 /* Main.storyboard */,
 				2C78ED072BBC3A4C00F78116 /* Assets.xcassets */,
 				2C78ED092BBC3A4C00F78116 /* LaunchScreen.storyboard */,
@@ -164,6 +167,7 @@
 				2C78ED032BBC3A4B00F78116 /* ViewController.swift in Sources */,
 				2C78ECFF2BBC3A4B00F78116 /* AppDelegate.swift in Sources */,
 				2C78ED012BBC3A4B00F78116 /* SceneDelegate.swift in Sources */,
+				2C7167132BC7FC1F00AA944B /* MovieDetailsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,59 +10,57 @@ import UIKit
 import PureLayout
 import MovieAppData
 
+
+
 let noURLImage = URL(string: "https://media.istockphoto.com/id/1336657186/vector/no-wi-fi-flat-vector.jpg?s=612x612&w=0&k=20&c=HbcdNJXVwQl3UhnENheZy0VXLXVrPDebCWD9aBHVDJM=") // temporary image in case of missing image from data
 
 
 class MovieDetailsViewController: UIViewController {
-    
+//    var gridView: ActorsGridView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.isHidden = true
         var movieTitle = ""
         var releaseDate = ""
         var userRating = ""
         var movieGenres = ""
-//        var movieCrew = [(name: String, role: String)].self
-        let details = MovieUseCase().getDetails(id: 111161)
-        if(details != nil){
-            movieTitle = details!.name + " ("
-            movieTitle = movieTitle + String(details!.year) + ")"
-            releaseDate = reformatDate(date: details!.releaseDate)
-            userRating = String(details!.rating) + "  User Score"
-            movieGenres = (details?.categories.map { enumValue -> String in
-                switch enumValue {
-                case .action:
-                    return "Action"
-                case .adventure:
-                    return "Adventure"
-                case .comedy:
-                    return "Comedy"
-                case .crime:
-                    return "Crime"
-                case .drama:
-                    return "Drama"
-                case .fantasy:
-                    return "Fantasy"
-                case .romance:
-                    return "Romance"
-                case .scienceFiction:
-                    return "Science Fiction"
-                case .thriller:
-                    return "Thriller"
-                case .western:
-                    return "Western"
-                }
-            }.joined(separator: ", ")) ?? ""
-
-            
-            
-            
-        }
-        let topDetailsView = movieDetailsView(frame:   CGRect(x: 0, y: 0, width: 327, height: 390),backgroundImage: details?.imageUrl, title: movieTitle, releaseDate: releaseDate,userRating: userRating, movieGenres: movieGenres, movieDuration: convertMinutesToHoursAndMinutes(details!.duration), movieDescription: details!.summary)
-//        let gridView = ActorsGridView()
-//        gridView.elements = details!.crewMembers.map(){(name: $0.name,role: $0.role)}
+//      var movieCrew = [(name: String, role: String)].self
+        guard let details = MovieUseCase().getDetails(id: 111161) else {return}
+        
+        movieTitle = "\(details.name) (\(details.year))"
+        releaseDate = reformatDate(date: details.releaseDate)
+        userRating =   "\(details.rating)  User Score"
+        movieGenres = (details.categories.map { enumValue -> String in
+        switch enumValue {
+            case .action:
+                return "Action"
+            case .adventure:
+                return "Adventure"
+            case .comedy:
+                return "Comedy"
+            case .crime:
+                return "Crime"
+            case .drama:
+                return "Drama"
+            case .fantasy:
+                return "Fantasy"
+            case .romance:
+                return "Romance"
+            case .scienceFiction:
+                return "Science Fiction"
+            case .thriller:
+                return "Thriller"
+            case .western:
+                return "Western"
+            }
+        }.joined(separator: ", "))
+    
+        let topDetailsView = movieDetailsView(frame:   CGRect(x: 0, y: 0, width: 327, height: 300),backgroundImage: details.imageUrl, title: movieTitle, releaseDate: releaseDate,userRating: userRating, movieGenres: movieGenres, movieDuration: convertMinutesToHoursAndMinutes(details.duration), movieDescription: details.summary)
+//        setupActorsGridView()
+        topDetailsView.setGridElements(crewMembers: details.crewMembers)
         view.addSubview(topDetailsView)
 //        view.addSubview(gridView)
-//        gridView.autoPinEdge(.top, to: .bottom, of: topDetailsView)
+//        gridView.autoPinEdge(.top, to: .bottom, of: topDetailsView.forFirstBaselineLayout)
 //        gridView.autoPinEdge(toSuperviewEdge: .leading)
 //        gridView.autoPinEdge(toSuperviewEdge: .trailing)
 //        gridView.autoPinEdge(toSuperviewEdge: .bottom)
@@ -71,6 +69,13 @@ class MovieDetailsViewController: UIViewController {
 
         print(details)
     }
+    
+//    func setupActorsGridView() {
+//            let layout = UICollectionViewFlowLayout()
+//            layout.scrollDirection = .vertical
+//            gridView = ActorsGridView(frame: .zero, collectionViewLayout: layout)
+//            gridView.backgroundColor = .white
+//        }
     
     func reformatDate(date: String) -> String{
         let date = "2024-04-08"
@@ -93,168 +98,7 @@ class MovieDetailsViewController: UIViewController {
     }
 }
 
-class movieDetailsView : UIView{
-    
-    // MARK: - Properties
-        
-        private let backgroundImageView: UIImageView = {
-            let imageView = UIImageView()
-            imageView.contentMode = .scaleAspectFill
-            imageView.clipsToBounds = true
-            return imageView
-        }()
-    
-        private let ratingLabel: UILabel = {
-            let label = UILabel()
-            label.font = UIFont(name: "Proxima Nova", size: 20)
-            label.textColor = .white
-            label.textAlignment = .left
-            return label
-        }()
-        
-        private let titleLabel: UILabel = {
-            let label = UILabel()
-            label.font = UIFont.boldSystemFont(ofSize: 20)
-            label.textColor = .white
-            label.textAlignment = .left
-            return label
-        }()
-        
-        private let releaseLabel: UILabel = {
-            let label = UILabel()
-            label.font = UIFont.systemFont(ofSize: 16)
-            label.textColor = .white
-            label.textAlignment = .left
-            return label
-        }()
-    
-        private let genreLabel: UILabel = {
-            let label = UILabel()
-            label.font = UIFont.systemFont(ofSize: 16)
-            label.textColor = .white
-            label.textAlignment = .left
-            return label
-        }()
-        private let durationLabel: UILabel = {
-            let label = UILabel()
-            label.font = UIFont.boldSystemFont(ofSize: 16)
-            label.textColor = .white
-            label.textAlignment = .left
-            return label
-        }()
-    
-        private let overviewLabel: UILabel = {
-            let label = UILabel()
-            label.font = UIFont.boldSystemFont(ofSize: 20)
-            label.textColor = .black
-            label.textAlignment = .left
-            label.text = "Overview"
-            return label
-        }()
-        
-        private let descriptionLabel: UILabel = {
-            let label = UILabel()
-            label.font = UIFont.systemFont(ofSize: 16)
-            label.textColor = .black
-            label.textAlignment = .left
-            label.numberOfLines = 0
-            label.lineBreakMode = .byWordWrapping
-            label.lineBreakStrategy = .standard
-            
-            return label
-        }()
-    
-        // MARK: - Initialization
-        
-    init(frame: CGRect,backgroundImage: String?, title: String?, releaseDate: String?, userRating: String?, movieGenres: String?, movieDuration: String?, movieDescription: String?) {
-            super.init(frame: .zero)
-            setupSubviews()
-            
-            if let backgroundImage = backgroundImage {
-                backgroundImageView.load(url: (URL(string: backgroundImage) ?? noURLImage)!)
-            }
-            ratingLabel.text = userRating
-            titleLabel.text = title
-            releaseLabel.text = releaseDate
-            genreLabel.text = movieGenres
-            durationLabel.text = movieDuration
-            descriptionLabel.text = movieDescription
-        }
-        
-        required init?(coder: NSCoder) {
-            fatalError("init(coder:) has not been implemented")
-        }
-    
-        override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        // Set the frame to fill the safe area
-        if let superview = superview {
-            frame = superview.safeAreaLayoutGuide.layoutFrame
-            }
-        }
-        override func didMoveToSuperview() {
-            super.didMoveToSuperview()
-            
-            guard let superview = superview else {
-                return
-            }
-            
-            setupConstraints(with: superview)
-        }
-        
-        // MARK: - Setup
-        
-        private func setupSubviews() {
-            addSubview(backgroundImageView)
-            addSubview(ratingLabel)
-            addSubview(titleLabel)
-            addSubview(releaseLabel)
-            addSubview(genreLabel)
-            addSubview(durationLabel)
-            addSubview(overviewLabel)
-            addSubview(descriptionLabel)
-        }
-        
-    private func setupConstraints(with superview: UIView) {
-            backgroundImageView.autoPinEdge(toSuperviewEdge: .leading)
-            backgroundImageView.autoPinEdge(toSuperviewEdge: .trailing)
-            backgroundImageView.autoPinEdge(toSuperviewEdge: .top)
-            backgroundImageView.autoMatch(.height, to: .height, of: self, withMultiplier: 0.4) // Set height to 1/3 of superview
 
-            // User rating Label Constraints
-            ratingLabel.autoPinEdge(.bottom, to: .top, of: titleLabel, withOffset: -20, relation: .equal)
-            ratingLabel.autoPinEdge(toSuperviewEdge: .leading, withInset: 20)
-        
-            // Title Label Constraints
-            titleLabel.autoPinEdge(.bottom, to: .top, of: releaseLabel, withOffset: -25, relation: .equal)
-            titleLabel.autoPinEdge(toSuperviewEdge: .leading, withInset: 20)
-            titleLabel.autoPinEdge(toSuperviewEdge: .trailing, withInset: 5)
-            
-            // Release date Label Constraints
-            releaseLabel.autoPinEdge(.bottom, to: .bottom, of: genreLabel, withOffset: -20, relation: .equal)
-            releaseLabel.autoPinEdge(toSuperviewEdge: .leading, withInset: 20)
-        
-            // Genre date Label Constraints
-            genreLabel.autoPinEdge(.bottom, to: .bottom, of: backgroundImageView, withOffset: -25, relation: .equal)
-            genreLabel.autoPinEdge(toSuperviewEdge: .leading, withInset: 20)
-        
-            // Genre date Label Constraints
-            durationLabel.autoPinEdge(.bottom, to: .bottom, of: backgroundImageView, withOffset: -25, relation: .equal)
-            durationLabel.autoPinEdge(.leading, to: .trailing, of: genreLabel, withOffset: 5)
-        
-            overviewLabel.autoPinEdge(.top, to: .bottom, of: backgroundImageView, withOffset: 25, relation: .equal)
-            overviewLabel.autoPinEdge(toSuperviewEdge: .leading, withInset: 20)
-
-        
-            descriptionLabel.autoPinEdge(.top, to: .bottom, of: overviewLabel, withOffset: 25, relation: .equal)
-            descriptionLabel.autoPinEdge(toSuperviewEdge: .leading, withInset: 16)
-            descriptionLabel.autoPinEdge(toSuperviewEdge: .trailing, withInset: 16) // Ensure the label spans the width of the superview
-            descriptionLabel.setContentCompressionResistancePriority(.required, for: .vertical) // Ensure label's height is flexible
-
-        
-        }
-    }
 
 class ActorsGridView: UICollectionView {
     
@@ -274,11 +118,20 @@ class ActorsGridView: UICollectionView {
         setupCollectionView()
     }
     
+    
     private func setupCollectionView() {
         self.backgroundColor = .clear
         self.delegate = self
         self.dataSource = self
         self.register(GridCell.self, forCellWithReuseIdentifier: GridCell.reuseIdentifier)
+        if let layout = self.collectionViewLayout as? UICollectionViewFlowLayout {
+                   layout.minimumInteritemSpacing = 10
+                   layout.minimumLineSpacing = 10
+                   layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        }
+        
+        
+        
     }
 }
 
@@ -302,10 +155,22 @@ extension ActorsGridView: UICollectionViewDelegateFlowLayout, UICollectionViewDa
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = (collectionView.bounds.width - collectionView.contentInset.left - collectionView.contentInset.right) / 2
-        return CGSize(width: width, height: 100) // Adjust height as needed
-    }
+    // MARK: UICollectionViewDelegateFlowLayout Methods
+        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+            return CGSize(width: 110, height: 40) // Set each item size to 80px wide by 40px tall
+        }
+        
+        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+            return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10) // Adjust as needed
+        }
+
+        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+            return 10 // Vertical spacing
+        }
+
+        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+            return 10 // Horizontal spacing
+        }
 }
 
 
