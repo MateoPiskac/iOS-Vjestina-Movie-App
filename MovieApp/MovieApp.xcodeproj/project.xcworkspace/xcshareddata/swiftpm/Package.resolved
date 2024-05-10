@@ -1,0 +1,33 @@
+{
+  "originHash" : "916f93a9e4e6845b1a33946d314892b9652f9d807d00b8e0a0b0cd5c18fb7446",
+  "pins" : [
+    {
+      "identity" : "movieappdata",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/fiveagency/MovieAppData",
+      "state" : {
+        "revision" : "0d476dbdc4e8f6828a4fdaff4fa0b977ab5ebf35",
+        "version" : "2.1.1"
+      }
+    },
+    {
+      "identity" : "purelayout",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/PureLayout/PureLayout",
+      "state" : {
+        "revision" : "5561683c96dc49b023c1299bfe4f6fbeed5f8199",
+        "version" : "3.1.9"
+      }
+    },
+    {
+      "identity" : "sdwebimage",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SDWebImage/SDWebImage",
+      "state" : {
+        "revision" : "f6afa0132961d593f07970d84e2d8b588c29ea04",
+        "version" : "5.19.1"
+      }
+    }
+  ],
+  "version" : 3
+}
