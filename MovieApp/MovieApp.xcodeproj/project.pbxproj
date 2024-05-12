@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		2C7167132BC7FC1F00AA944B /* MovieDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7167122BC7FC1F00AA944B /* MovieDetailsView.swift */; };
+		2C777D802BEE450E00135E35 /* MovieListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C777D7F2BEE450E00135E35 /* MovieListViewController.swift */; };
+		2C777D822BEE483300135E35 /* SectionCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C777D812BEE483300135E35 /* SectionCellView.swift */; };
+		2C777D842BF099C700135E35 /* AllMoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C777D832BF099C700135E35 /* AllMoviesViewController.swift */; };
+		2C777D862BF09B0000135E35 /* MovieTableVIewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C777D852BF09B0000135E35 /* MovieTableVIewCell.swift */; };
 		2C78ECFF2BBC3A4B00F78116 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C78ECFE2BBC3A4B00F78116 /* AppDelegate.swift */; };
 		2C78ED012BBC3A4B00F78116 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C78ED002BBC3A4B00F78116 /* SceneDelegate.swift */; };
 		2C78ED032BBC3A4B00F78116 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C78ED022BBC3A4B00F78116 /* ViewController.swift */; };
@@ -23,6 +27,10 @@
 
 /* Begin PBXFileReference section */
 		2C7167122BC7FC1F00AA944B /* MovieDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsView.swift; sourceTree = "<group>"; };
+		2C777D7F2BEE450E00135E35 /* MovieListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MovieListViewController.swift; path = ../MovieListViewController.swift; sourceTree = "<group>"; };
+		2C777D812BEE483300135E35 /* SectionCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SectionCellView.swift; path = ../SectionCellView.swift; sourceTree = "<group>"; };
+		2C777D832BF099C700135E35 /* AllMoviesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllMoviesViewController.swift; sourceTree = "<group>"; };
+		2C777D852BF09B0000135E35 /* MovieTableVIewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableVIewCell.swift; sourceTree = "<group>"; };
 		2C78ECFB2BBC3A4B00F78116 /* MovieApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C78ECFE2BBC3A4B00F78116 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2C78ED002BBC3A4B00F78116 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -71,6 +79,10 @@
 				2C78ECFE2BBC3A4B00F78116 /* AppDelegate.swift */,
 				2C78ED002BBC3A4B00F78116 /* SceneDelegate.swift */,
 				2C78ED022BBC3A4B00F78116 /* ViewController.swift */,
+				2C777D812BEE483300135E35 /* SectionCellView.swift */,
+				2C777D7F2BEE450E00135E35 /* MovieListViewController.swift */,
+				2C777D832BF099C700135E35 /* AllMoviesViewController.swift */,
+				2C777D852BF09B0000135E35 /* MovieTableVIewCell.swift */,
 				2C78ED1F2BC4669400F78116 /* MovieDetailsViewController.swift */,
 				2C7167122BC7FC1F00AA944B /* MovieDetailsView.swift */,
 				2C78ED042BBC3A4B00F78116 /* Main.storyboard */,
@@ -165,9 +177,13 @@
 			files = (
 				2C78ED202BC4669400F78116 /* MovieDetailsViewController.swift in Sources */,
 				2C78ED032BBC3A4B00F78116 /* ViewController.swift in Sources */,
+				2C777D862BF09B0000135E35 /* MovieTableVIewCell.swift in Sources */,
 				2C78ECFF2BBC3A4B00F78116 /* AppDelegate.swift in Sources */,
+				2C777D842BF099C700135E35 /* AllMoviesViewController.swift in Sources */,
+				2C777D802BEE450E00135E35 /* MovieListViewController.swift in Sources */,
 				2C78ED012BBC3A4B00F78116 /* SceneDelegate.swift in Sources */,
 				2C7167132BC7FC1F00AA944B /* MovieDetailsView.swift in Sources */,
+				2C777D822BEE483300135E35 /* SectionCellView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -402,8 +418,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/fiveagency/MovieAppData";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.1.1;
+				kind = exactVersion;
+				version = 2.1.0;
 			};
 		};
 		2C78ED182BC450A200F78116 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {

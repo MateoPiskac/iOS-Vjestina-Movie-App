@@ -12,11 +12,9 @@ import MovieAppData
 
 
 
-let noURLImage = URL(string: "https://media.istockphoto.com/id/1336657186/vector/no-wi-fi-flat-vector.jpg?s=612x612&w=0&k=20&c=HbcdNJXVwQl3UhnENheZy0VXLXVrPDebCWD9aBHVDJM=") // temporary image in case of missing image from data
 
 
 class MovieDetailsViewController: UIViewController {
-//    var gridView: ActorsGridView!
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
@@ -24,7 +22,6 @@ class MovieDetailsViewController: UIViewController {
         var releaseDate = ""
         var userRating = ""
         var movieGenres = ""
-//      var movieCrew = [(name: String, role: String)].self
         guard let details = MovieUseCase().getDetails(id: 111161) else {return}
         
         movieTitle = "\(details.name) (\(details.year))"
@@ -56,26 +53,13 @@ class MovieDetailsViewController: UIViewController {
         }.joined(separator: ", "))
     
         let topDetailsView = movieDetailsView(frame:   CGRect(x: 0, y: 0, width: 327, height: 300),backgroundImage: details.imageUrl, title: movieTitle, releaseDate: releaseDate,userRating: userRating, movieGenres: movieGenres, movieDuration: convertMinutesToHoursAndMinutes(details.duration), movieDescription: details.summary)
-//        setupActorsGridView()
         topDetailsView.setGridElements(crewMembers: details.crewMembers)
         view.addSubview(topDetailsView)
-//        view.addSubview(gridView)
-//        gridView.autoPinEdge(.top, to: .bottom, of: topDetailsView.forFirstBaselineLayout)
-//        gridView.autoPinEdge(toSuperviewEdge: .leading)
-//        gridView.autoPinEdge(toSuperviewEdge: .trailing)
-//        gridView.autoPinEdge(toSuperviewEdge: .bottom)
 
         view.backgroundColor = .white
 
         print(details)
     }
-    
-//    func setupActorsGridView() {
-//            let layout = UICollectionViewFlowLayout()
-//            layout.scrollDirection = .vertical
-//            gridView = ActorsGridView(frame: .zero, collectionViewLayout: layout)
-//            gridView.backgroundColor = .white
-//        }
     
     func reformatDate(date: String) -> String{
         let date = "2024-04-08"

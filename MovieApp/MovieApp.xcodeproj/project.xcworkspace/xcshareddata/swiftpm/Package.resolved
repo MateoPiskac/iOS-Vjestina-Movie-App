@@ -6,8 +6,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/fiveagency/MovieAppData",
       "state" : {
-        "revision" : "0d476dbdc4e8f6828a4fdaff4fa0b977ab5ebf35",
-        "version" : "2.1.1"
+        "revision" : "9bf9b94ac967d6120f22d4379e4618973189b8d9",
+        "version" : "2.1.0"
       }
     },
     {
