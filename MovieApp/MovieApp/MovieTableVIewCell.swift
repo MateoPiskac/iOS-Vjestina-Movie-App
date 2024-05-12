@@ -114,4 +114,3 @@ class MovieTableViewCell: UITableViewCell {
         posterImageView.load(url: URL(string : movie.imageUrl) ?? noURLImage!)
     }
 }
-

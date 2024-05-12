@@ -108,9 +108,22 @@ class MoviePosterCell: UICollectionViewCell {
         let image = UIImageView()
         image.contentMode = .scaleAspectFill
         image.clipsToBounds = true
+        image.layer.masksToBounds = true
         image.layer.cornerRadius = 8
         return image
     }()
+    
+    private let favoriteIcon: UIImageView = {
+            let icon = UIImageView(image: UIImage(named: "favourite-Icon"))
+            icon.contentMode = .center
+        icon.backgroundColor = UIColor.lightGray.withAlphaComponent(0.3) // You can set this to any color or clear
+            icon.layer.cornerRadius = 16 // Half the size if the view is 32x32 for a full circle
+            icon.clipsToBounds = true
+            return icon
+        }()
+
+    
+
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -124,8 +137,13 @@ class MoviePosterCell: UICollectionViewCell {
     
     private func setupImageView() {
         contentView.addSubview(imageView)
+        contentView.addSubview(favoriteIcon)
+
         imageView.autoPinEdgesToSuperviewEdges()
         
+        favoriteIcon.autoSetDimensions(to: CGSize(width: 32, height: 32))
+        favoriteIcon.autoPinEdge(toSuperviewEdge: .leading, withInset: 10)
+        favoriteIcon.autoPinEdge(toSuperviewEdge: .top, withInset: 15)
         contentView.backgroundColor = .clear
         contentView.layer.masksToBounds = false
     }
