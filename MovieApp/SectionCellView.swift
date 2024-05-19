@@ -100,7 +100,7 @@ class SectionCellView: UICollectionViewCell, UICollectionViewDelegate, UICollect
        }
 }
 
-    //MARK: - Movir Poster cell
+    //MARK: - Movie Poster cell
 
 class MoviePosterCell: UICollectionViewCell {
     
@@ -143,7 +143,7 @@ class MoviePosterCell: UICollectionViewCell {
         
         favoriteIcon.autoSetDimensions(to: CGSize(width: 32, height: 32))
         favoriteIcon.autoPinEdge(toSuperviewEdge: .leading, withInset: 10)
-        favoriteIcon.autoPinEdge(toSuperviewEdge: .top, withInset: 15)
+        favoriteIcon.autoPinEdge(toSuperviewEdge: .top, withInset: 10)
         contentView.backgroundColor = .clear
         contentView.layer.masksToBounds = false
     }

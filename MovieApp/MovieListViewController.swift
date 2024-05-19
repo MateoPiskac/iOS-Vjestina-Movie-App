@@ -37,11 +37,11 @@ class MovieListViewController: UIViewController, UICollectionViewDelegate, UICol
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 3  // Assuming 3 sections
+        return 1  // Assuming 3 sections
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        return 3
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -49,21 +49,21 @@ class MovieListViewController: UIViewController, UICollectionViewDelegate, UICol
             fatalError("Unable to dequeue SectionCell")
         }
         // Configure each section cell based on the section
-        switch indexPath.section {
+        switch indexPath.item {
         case 0:
-            cell.configure(for: indexPath.section, movies: popularMovies)
+            cell.configure(for: indexPath.item, movies: popularMovies)
         case 1:
-            cell.configure(for: indexPath.section, movies: freeMovies)
+            cell.configure(for: indexPath.item, movies: freeMovies)
         case 2:
-            cell.configure(for: indexPath.section, movies: trendingMovies)
+            cell.configure(for: indexPath.item, movies: trendingMovies)
         default:
-            cell.configure(for: indexPath.section, movies: popularMovies)
+            cell.configure(for: indexPath.item, movies: popularMovies)
         }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.bounds.width, height: 200)
+        return CGSize(width: collectionView.bounds.width, height: 230)
     }
     
     
