@@ -14,9 +14,11 @@ import MovieAppData
 class SectionCellView: UICollectionViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     // MARK: - Properties
-
+    
     private var sectionMovies : [MovieModel] = []
     var collectionView: UICollectionView!
+    var onMovieTap: ((Int) -> Void)?
+    
     
     private let titleLabel: UILabel = {
         let label = UILabel()
@@ -71,6 +73,7 @@ class SectionCellView: UICollectionViewCell, UICollectionViewDelegate, UICollect
         default:
             titleLabel.text = "Section \(section)"
         }
+        collectionView.reloadData()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -83,6 +86,9 @@ class SectionCellView: UICollectionViewCell, UICollectionViewDelegate, UICollect
         }
         let movie = sectionMovies[indexPath.item]
         cell.configure(with: movie.imageUrl)
+        cell.tapAction = { [weak self] in
+            self?.onMovieTap?(movie.id)
+        }
         return cell
     }
     
@@ -91,18 +97,20 @@ class SectionCellView: UICollectionViewCell, UICollectionViewDelegate, UICollect
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-           return 10  // Horizontal spacing between cells
-       }
-
-
+        return 10  // Horizontal spacing between cells
+    }
+    
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-           return UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)  // Padding from the edges of the collectionView
-       }
+        return UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)  // Padding from the edges of the collectionView
+    }
 }
 
-    //MARK: - Movie Poster cell
+//MARK: - Movie Poster cell
 
 class MoviePosterCell: UICollectionViewCell {
+    
+    var tapAction: (() -> Void)?
     
     private let imageView: UIImageView = {
         let image = UIImageView()
@@ -114,21 +122,19 @@ class MoviePosterCell: UICollectionViewCell {
     }()
     
     private let favoriteIcon: UIImageView = {
-            let icon = UIImageView(image: UIImage(named: "favourite-Icon"))
-            icon.contentMode = .center
-        icon.backgroundColor = UIColor.lightGray.withAlphaComponent(0.3) // You can set this to any color or clear
-            icon.layer.cornerRadius = 16 // Half the size if the view is 32x32 for a full circle
-            icon.clipsToBounds = true
-            return icon
-        }()
-
-    
-
+        let icon = UIImageView(image: UIImage(named: "favourite-Icon"))
+        icon.contentMode = .center
+        icon.backgroundColor = UIColor.lightGray.withAlphaComponent(0.3)
+        icon.layer.cornerRadius = 16 // Half the size if the view is 32x32 for a full circle
+        icon.clipsToBounds = true
+        return icon
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupImageView()
         applyShadow()
+        setupTapGesture()
     }
     
     required init?(coder: NSCoder) {
@@ -138,7 +144,7 @@ class MoviePosterCell: UICollectionViewCell {
     private func setupImageView() {
         contentView.addSubview(imageView)
         contentView.addSubview(favoriteIcon)
-
+        
         imageView.autoPinEdgesToSuperviewEdges()
         
         favoriteIcon.autoSetDimensions(to: CGSize(width: 32, height: 32))
@@ -165,6 +171,14 @@ class MoviePosterCell: UICollectionViewCell {
         imageView.clipsToBounds = true
     }
     
+    private func setupTapGesture() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        self.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc private func handleTap() {
+        tapAction?()
+    }
     
     func configure(with image: String) {
         imageView.load(url: URL(string: image) ?? noURLImage!)

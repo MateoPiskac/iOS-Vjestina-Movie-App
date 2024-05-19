@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C45FBE82BFA770D009D4033 /* FavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C45FBE72BFA770D009D4033 /* FavouritesViewController.swift */; };
 		2C7167132BC7FC1F00AA944B /* MovieDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7167122BC7FC1F00AA944B /* MovieDetailsView.swift */; };
 		2C777D802BEE450E00135E35 /* MovieListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C777D7F2BEE450E00135E35 /* MovieListViewController.swift */; };
 		2C777D822BEE483300135E35 /* SectionCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C777D812BEE483300135E35 /* SectionCellView.swift */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2C45FBE72BFA770D009D4033 /* FavouritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewController.swift; sourceTree = "<group>"; };
 		2C7167122BC7FC1F00AA944B /* MovieDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsView.swift; sourceTree = "<group>"; };
 		2C777D7F2BEE450E00135E35 /* MovieListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MovieListViewController.swift; path = ../MovieListViewController.swift; sourceTree = "<group>"; };
 		2C777D812BEE483300135E35 /* SectionCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SectionCellView.swift; path = ../SectionCellView.swift; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 			children = (
 				2C78ECFE2BBC3A4B00F78116 /* AppDelegate.swift */,
 				2C78ED002BBC3A4B00F78116 /* SceneDelegate.swift */,
+				2C45FBE72BFA770D009D4033 /* FavouritesViewController.swift */,
 				2C78ED022BBC3A4B00F78116 /* ViewController.swift */,
 				2C777D812BEE483300135E35 /* SectionCellView.swift */,
 				2C777D7F2BEE450E00135E35 /* MovieListViewController.swift */,
@@ -183,6 +186,7 @@
 				2C777D802BEE450E00135E35 /* MovieListViewController.swift in Sources */,
 				2C78ED012BBC3A4B00F78116 /* SceneDelegate.swift in Sources */,
 				2C7167132BC7FC1F00AA944B /* MovieDetailsView.swift in Sources */,
+				2C45FBE82BFA770D009D4033 /* FavouritesViewController.swift in Sources */,
 				2C777D822BEE483300135E35 /* SectionCellView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

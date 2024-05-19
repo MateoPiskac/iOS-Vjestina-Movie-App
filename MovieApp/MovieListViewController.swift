@@ -17,10 +17,21 @@ class MovieListViewController: UIViewController, UICollectionViewDelegate, UICol
     let freeMovies = MovieUseCase().freeToWatchMovies
     let trendingMovies = MovieUseCase().trendingMovies
     
+    fileprivate func setupBarIcons() {
+        let originalImage = UIImage(named: "movies_list_unselected")
+        let resizedImage = originalImage?.resized(to: CGSize(width: 18, height: 18))
+        let resizedSelectedImage = UIImage(named: "movies_list_selected")?.resized(to: CGSize(width: 18, height: 18))
+        self.tabBarItem = UITabBarItem(title: "Movie List", image: resizedImage, selectedImage: resizedSelectedImage)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.isHidden = true
+        navigationController?.navigationBar.backgroundColor = .white
+        self.title = "Movie List"
+        setupBarIcons()
         setupCollectionView()
+        self.collectionView.backgroundColor = .white
+        
     }
     
     private func setupCollectionView() {
@@ -59,7 +70,15 @@ class MovieListViewController: UIViewController, UICollectionViewDelegate, UICol
         default:
             cell.configure(for: indexPath.item, movies: popularMovies)
         }
+        cell.onMovieTap = { [weak self] movieId in
+            self?.showMovieDetail(movieId: movieId)
+        }
         return cell
+    }
+    private func showMovieDetail(movieId: Int) {
+        let detailVC = MovieDetailsViewController()
+        detailVC.movieId = movieId
+        navigationController?.pushViewController(detailVC, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -67,4 +86,13 @@ class MovieListViewController: UIViewController, UICollectionViewDelegate, UICol
     }
     
     
+}
+
+extension UIImage {
+    func resized(to size: CGSize) -> UIImage? {
+        UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
+        defer { UIGraphicsEndImageContext() }
+        draw(in: CGRect(origin: .zero, size: size))
+        return UIGraphicsGetImageFromCurrentImageContext()
+    }
 }
