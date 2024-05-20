@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import PureLayout
 import MovieAppData
-
+import Kingfisher
 
 
 
@@ -199,22 +199,5 @@ class GridCell: UICollectionViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-}
-
-// MARK: - Image loader
-
-
-extension UIImageView {
-    func load(url: URL) {
-        DispatchQueue.global().async { [weak self] in
-            if let data = try? Data(contentsOf: url) {
-                if let image = UIImage(data: data) {
-                    DispatchQueue.main.async {
-                        self?.image = image
-                    }
-                }
-            }
-        }
     }
 }

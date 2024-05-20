@@ -181,7 +181,7 @@ class MoviePosterCell: UICollectionViewCell {
     }
     
     func configure(with image: String) {
-        imageView.load(url: URL(string: image) ?? noURLImage!)
+        imageView.kf.setImage(with: URL(string: image),placeholder: UIImage(named: "no_network_placeholder"))
     }
     
 }

@@ -97,7 +97,7 @@ class movieDetailsView : UIView{
             setupSubviews()
             
             if let backgroundImage = backgroundImage {
-                backgroundImageView.load(url: (URL(string: backgroundImage) ?? noURLImage)!)
+                backgroundImageView.kf.setImage(with: (URL(string: backgroundImage)), placeholder: UIImage(named: "no_network_placeholder"))
             }
             ratingLabel.text = userRating
             titleLabel.text = title

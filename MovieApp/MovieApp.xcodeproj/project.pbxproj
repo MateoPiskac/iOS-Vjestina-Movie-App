@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2C45FBE82BFA770D009D4033 /* FavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C45FBE72BFA770D009D4033 /* FavouritesViewController.swift */; };
+		2C45FBEB2BFB4067009D4033 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 2C45FBEA2BFB4067009D4033 /* Kingfisher */; };
 		2C7167132BC7FC1F00AA944B /* MovieDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7167122BC7FC1F00AA944B /* MovieDetailsView.swift */; };
 		2C777D802BEE450E00135E35 /* MovieListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C777D7F2BEE450E00135E35 /* MovieListViewController.swift */; };
 		2C777D822BEE483300135E35 /* SectionCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C777D812BEE483300135E35 /* SectionCellView.swift */; };
@@ -53,6 +54,7 @@
 				2C78ED142BBC45DF00F78116 /* PureLayout in Frameworks */,
 				2C78ED1C2BC450A200F78116 /* SDWebImageMapKit in Frameworks */,
 				2C78ED172BBC7C4200F78116 /* MovieAppData in Frameworks */,
+				2C45FBEB2BFB4067009D4033 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -117,6 +119,7 @@
 				2C78ED162BBC7C4200F78116 /* MovieAppData */,
 				2C78ED192BC450A200F78116 /* SDWebImage */,
 				2C78ED1B2BC450A200F78116 /* SDWebImageMapKit */,
+				2C45FBEA2BFB4067009D4033 /* Kingfisher */,
 			);
 			productName = MovieApp;
 			productReference = 2C78ECFB2BBC3A4B00F78116 /* MovieApp.app */;
@@ -150,6 +153,7 @@
 				2C78ED122BBC45DF00F78116 /* XCRemoteSwiftPackageReference "PureLayout" */,
 				2C78ED152BBC7C4200F78116 /* XCRemoteSwiftPackageReference "MovieAppData" */,
 				2C78ED182BC450A200F78116 /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				2C45FBE92BFB4067009D4033 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 2C78ECFC2BBC3A4B00F78116 /* Products */;
 			projectDirPath = "";
@@ -410,6 +414,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		2C45FBE92BFB4067009D4033 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.11.0;
+			};
+		};
 		2C78ED122BBC45DF00F78116 /* XCRemoteSwiftPackageReference "PureLayout" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/PureLayout/PureLayout";
@@ -422,8 +434,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/fiveagency/MovieAppData";
 			requirement = {
-				kind = exactVersion;
-				version = 2.1.0;
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.1.0;
 			};
 		};
 		2C78ED182BC450A200F78116 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
@@ -437,6 +449,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2C45FBEA2BFB4067009D4033 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2C45FBE92BFB4067009D4033 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
 		2C78ED132BBC45DF00F78116 /* PureLayout */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2C78ED122BBC45DF00F78116 /* XCRemoteSwiftPackageReference "PureLayout" */;
