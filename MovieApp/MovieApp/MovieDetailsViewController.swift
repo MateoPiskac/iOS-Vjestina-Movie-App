@@ -17,6 +17,7 @@ import Kingfisher
 class MovieDetailsViewController: UIViewController {
     
     var movieId: Int?
+    private var topDetailsView: movieDetailsView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,13 +54,16 @@ class MovieDetailsViewController: UIViewController {
             }
         }.joined(separator: ", "))
         
-        let topDetailsView = movieDetailsView(frame:   CGRect(x: 0, y: 0, width: 327, height: 300),backgroundImage: details.imageUrl, title: movieTitle, releaseDate: releaseDate,userRating: userRating, movieGenres: movieGenres, movieDuration: convertMinutesToHoursAndMinutes(details.duration), movieDescription: details.summary)
-        topDetailsView.setGridElements(crewMembers: details.crewMembers)
-        view.addSubview(topDetailsView)
+        topDetailsView = movieDetailsView(frame:   CGRect(x: 0, y: 0, width: 327, height: 300),backgroundImage: details.imageUrl, title: movieTitle, releaseDate: releaseDate,userRating: userRating, movieGenres: movieGenres, movieDuration: convertMinutesToHoursAndMinutes(details.duration), movieDescription: details.summary)
+        topDetailsView!.setGridElements(crewMembers: details.crewMembers)
+        view.addSubview(topDetailsView!)
         view.backgroundColor = .white
         
-        topDetailsView.animateLabelsAndGridView()
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.topDetailsView?.animateLabelsAndGridView()
     }
     
     func reformatDate(date: String) -> String{

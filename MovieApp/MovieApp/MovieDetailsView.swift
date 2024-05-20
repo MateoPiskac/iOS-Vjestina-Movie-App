@@ -208,6 +208,7 @@ class movieDetailsView : UIView{
     
     //MARK: - Animations
     
+    
     func animateLabelsAndGridView() {
         // Initial off-screen position
         ratingLabel.transform = ratingLabel
@@ -233,42 +234,42 @@ class movieDetailsView : UIView{
             .translatedBy(x: -frame.width, y: 0)
 
         // Animate labels sliding in from the left
-        UIView.animate(withDuration: 0.2, delay: 0.3, options: [.curveEaseInOut], animations: {
+        UIView.animate(withDuration: 0.2, delay: 0, options: [.curveEaseInOut], animations: {
             self.ratingLabel.transform = .identity
             self.ratingLabel.alpha = 1.0
         })
         
-        UIView.animate(withDuration: 0.2, delay: 0.3, options: [.curveEaseInOut], animations: {
+        UIView.animate(withDuration: 0.2, delay: 0, options: [.curveEaseInOut], animations: {
             self.titleLabel.transform = .identity
             self.titleLabel.alpha = 1.0
         })
         
-        UIView.animate(withDuration: 0.2, delay: 0.3, options: [.curveEaseInOut], animations: {
+        UIView.animate(withDuration: 0.2, delay: 0, options: [.curveEaseInOut], animations: {
             self.releaseLabel.transform = .identity
             self.releaseLabel.alpha = 1.0
         })
         
-        UIView.animate(withDuration: 0.2, delay: 0.3, options: [.curveEaseInOut], animations: {
+        UIView.animate(withDuration: 0.2, delay: 0, options: [.curveEaseInOut], animations: {
             self.genreLabel.transform = .identity
             self.genreLabel.alpha = 1.0
         })
         
-        UIView.animate(withDuration: 0.2, delay: 0.3, options: [.curveEaseInOut], animations: {
+        UIView.animate(withDuration: 0.2, delay: 0, options: [.curveEaseInOut], animations: {
             self.durationLabel.transform = .identity
             self.durationLabel.alpha = 1.0
         })
         
-        UIView.animate(withDuration: 0.2, delay: 0.3, options: [.curveEaseInOut], animations: {
+        UIView.animate(withDuration: 0.2, delay: 0, options: [.curveEaseInOut], animations: {
             self.overviewLabel.transform = .identity
             self.overviewLabel.alpha = 1.0
         })
         
-        UIView.animate(withDuration: 0.2, delay: 0.3, options: [.curveEaseInOut], animations: {
+        UIView.animate(withDuration: 0.2, delay: 0, options: [.curveEaseInOut], animations: {
             self.descriptionLabel.transform = .identity
             self.descriptionLabel.alpha = 1.0
         }, completion: { _ in
             // Fade in grid view after labels are done animating
-            UIView.animate(withDuration: 0.3) {
+            UIView.animate(withDuration: 0.3, delay: 0.1) {
                 self.gridView.alpha = 1.0
             }
         })
