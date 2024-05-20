@@ -56,10 +56,10 @@ class MovieDetailsViewController: UIViewController {
         let topDetailsView = movieDetailsView(frame:   CGRect(x: 0, y: 0, width: 327, height: 300),backgroundImage: details.imageUrl, title: movieTitle, releaseDate: releaseDate,userRating: userRating, movieGenres: movieGenres, movieDuration: convertMinutesToHoursAndMinutes(details.duration), movieDescription: details.summary)
         topDetailsView.setGridElements(crewMembers: details.crewMembers)
         view.addSubview(topDetailsView)
-        
         view.backgroundColor = .white
         
-        //print(details)
+        topDetailsView.animateLabelsAndGridView()
+        
     }
     
     func reformatDate(date: String) -> String{

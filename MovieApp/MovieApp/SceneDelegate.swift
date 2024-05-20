@@ -33,7 +33,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let backItem = UIBarButtonItem()
         backItem.title = "Movie List"
         tabBarController.navigationItem.backBarButtonItem = backItem
-                // Set the root view controller to the tab bar controller
         window?.rootViewController = UINavigationController(rootViewController: tabBarController)
         window?.makeKeyAndVisible()
     }
