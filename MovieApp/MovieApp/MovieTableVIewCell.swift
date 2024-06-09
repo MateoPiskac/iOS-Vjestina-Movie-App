@@ -10,23 +10,22 @@ import UIKit
 import PureLayout
 import MovieAppData
 
-let noURLImage = URL(string: "https://media.istockphoto.com/id/1336657186/vector/no-wi-fi-flat-vector.jpg?s=612x612&w=0&k=20&c=HbcdNJXVwQl3UhnENheZy0VXLXVrPDebCWD9aBHVDJM=") // temporary image in case of missing image from data
 
 class MovieTableViewCell: UITableViewCell {
     
     // MARK: - Properties
     
     private let cardView: UIView = {
-            let view = UIView()
-            view.backgroundColor = .white
-            view.layer.cornerRadius = 8
-            view.layer.shadowColor = UIColor.black.cgColor
-            view.layer.shadowOffset = CGSize(width: 0, height: 2)
-            view.layer.shadowRadius = 4
-            view.layer.shadowOpacity = 0.1
-            view.layer.masksToBounds = false
-            return view
-        }()
+        let view = UIView()
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 8
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOffset = CGSize(width: 0, height: 2)
+        view.layer.shadowRadius = 4
+        view.layer.shadowOpacity = 0.1
+        view.layer.masksToBounds = false
+        return view
+    }()
     
     private let posterImageView: UIImageView = {
         let imageView = UIImageView()
@@ -57,7 +56,7 @@ class MovieTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupViews()
         applyCornerMask()
-
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -84,13 +83,13 @@ class MovieTableViewCell: UITableViewCell {
     private func setupViews() {
         contentView.backgroundColor = .clear  // Ensure cell background doesn't show
         contentView.addSubview(cardView)
-               
+        
         cardView.addSubview(posterImageView)
         cardView.addSubview(titleLabel)
         cardView.addSubview(summaryLabel)
-               
+        
         cardView.autoPinEdgesToSuperviewEdges(with: UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16))
-
+        
         posterImageView.autoSetDimensions(to: CGSize(width: 70, height: 100))
         posterImageView.autoPinEdge(toSuperviewEdge: .left, withInset: 0)
         posterImageView.autoPinEdge(toSuperviewEdge: .top, withInset: 0)
@@ -111,6 +110,6 @@ class MovieTableViewCell: UITableViewCell {
     func configure(with movie: MovieModel) {
         titleLabel.text = movie.name
         summaryLabel.text = movie.summary
-        posterImageView.load(url: URL(string : movie.imageUrl) ?? noURLImage!)
+        posterImageView.kf.setImage(with: URL(string : movie.imageUrl),placeholder: UIImage(named: "no_network_placeholder"))
     }
 }
