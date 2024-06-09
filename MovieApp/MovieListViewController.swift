@@ -17,18 +17,14 @@ class MovieListViewController: UIViewController, UICollectionViewDelegate, UICol
     let freeMovies = MovieUseCase().freeToWatchMovies
     let trendingMovies = MovieUseCase().trendingMovies
     
-    fileprivate func setupBarIcons() {
-        let originalImage = UIImage(named: "movies_list_unselected")
-        let resizedImage = originalImage?.resized(to: CGSize(width: 18, height: 18))
-        let resizedSelectedImage = UIImage(named: "movies_list_selected")?.resized(to: CGSize(width: 18, height: 18))
-        self.tabBarItem = UITabBarItem(title: "Movie List", image: resizedImage, selectedImage: resizedSelectedImage)
-    }
+//    weak var coordinator: MovieListCoordinator?
+    weak var delegate: MovieListViewControllerDelegate?
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.backgroundColor = .white
         self.title = "Movie List"
-        setupBarIcons()
         setupCollectionView()
         self.collectionView.backgroundColor = .white
         
@@ -56,37 +52,35 @@ class MovieListViewController: UIViewController, UICollectionViewDelegate, UICol
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SectionCell", for: indexPath) as? SectionCellView else {
-            fatalError("Unable to dequeue SectionCell")
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SectionCell", for: indexPath) as? SectionCellView else {
+                fatalError("Unable to dequeue SectionCell")
+            }
+            // Configure each section cell based on the section
+            switch indexPath.item {
+            case 0:
+                cell.configure(for: indexPath.item, movies: popularMovies)
+            case 1:
+                cell.configure(for: indexPath.item, movies: freeMovies)
+            case 2:
+                cell.configure(for: indexPath.item, movies: trendingMovies)
+            default:
+                cell.configure(for: indexPath.item, movies: popularMovies)
+            }
+            cell.delegate = self // Set the delegate
+            return cell
         }
-        // Configure each section cell based on the section
-        switch indexPath.item {
-        case 0:
-            cell.configure(for: indexPath.item, movies: popularMovies)
-        case 1:
-            cell.configure(for: indexPath.item, movies: freeMovies)
-        case 2:
-            cell.configure(for: indexPath.item, movies: trendingMovies)
-        default:
-            cell.configure(for: indexPath.item, movies: popularMovies)
+        
+        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+            return CGSize(width: collectionView.bounds.width, height: 230)
         }
-        cell.onMovieTap = { [weak self] movieId in
-            self?.showMovieDetail(movieId: movieId)
+    }
+
+    extension MovieListViewController: SectionCellViewDelegate {
+        func didSelectMovie(movieId: Int) {
+            print("Movie with ID \(movieId) selected in MovieListViewController")  // Debug statement
+            delegate?.movieListViewController(self, didSelectMovieWithId: movieId)
         }
-        return cell
     }
-    private func showMovieDetail(movieId: Int) {
-        let detailVC = MovieDetailsViewController()
-        detailVC.movieId = movieId
-        navigationController?.pushViewController(detailVC, animated: true)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.bounds.width, height: 230)
-    }
-    
-    
-}
 
 extension UIImage {
     func resized(to size: CGSize) -> UIImage? {

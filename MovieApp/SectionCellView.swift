@@ -9,16 +9,19 @@ import Foundation
 import UIKit
 import PureLayout
 import MovieAppData
+import Kingfisher
 
+protocol SectionCellViewDelegate: AnyObject {
+    func didSelectMovie(movieId: Int)
+}
 
 class SectionCellView: UICollectionViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     // MARK: - Properties
     
-    private var sectionMovies : [MovieModel] = []
+    private var sectionMovies: [MovieModel] = []
     var collectionView: UICollectionView!
-    var onMovieTap: ((Int) -> Void)?
-    
+    weak var delegate: SectionCellViewDelegate?
     
     private let titleLabel: UILabel = {
         let label = UILabel()
@@ -61,7 +64,7 @@ class SectionCellView: UICollectionViewCell, UICollectionViewDelegate, UICollect
         collectionView.autoPinEdgesToSuperviewEdges(with: .zero, excludingEdge: .top)
     }
     
-    func configure(for section: Int, movies :[MovieModel]) {
+    func configure(for section: Int, movies: [MovieModel]) {
         sectionMovies = movies
         switch section {
         case 0:
@@ -87,7 +90,8 @@ class SectionCellView: UICollectionViewCell, UICollectionViewDelegate, UICollect
         let movie = sectionMovies[indexPath.item]
         cell.configure(with: movie.imageUrl)
         cell.tapAction = { [weak self] in
-            self?.onMovieTap?(movie.id)
+            print("Tapped on movie with ID \(movie.id)") // Debug statement
+            self?.delegate?.didSelectMovie(movieId: movie.id)
         }
         return cell
     }
@@ -100,11 +104,11 @@ class SectionCellView: UICollectionViewCell, UICollectionViewDelegate, UICollect
         return 10  // Horizontal spacing between cells
     }
     
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)  // Padding from the edges of the collectionView
     }
 }
+
 
 //MARK: - Movie Poster cell
 
@@ -181,7 +185,6 @@ class MoviePosterCell: UICollectionViewCell {
     }
     
     func configure(with image: String) {
-        imageView.kf.setImage(with: URL(string: image),placeholder: UIImage(named: "no_network_placeholder"))
+        imageView.kf.setImage(with: URL(string: image), placeholder: UIImage(named: "no_network_placeholder"))
     }
-    
 }

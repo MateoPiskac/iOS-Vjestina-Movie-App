@@ -64,9 +64,9 @@ class AllMoviesViewController: UIViewController, UITableViewDataSource, UITableV
         detailVC.movieId = movieId
         
         // Set the back button text for the next view controller
-        let backItem = UIBarButtonItem()
-        backItem.title = "Movie List"
-        navigationItem.backBarButtonItem = backItem
+//        let backItem = UIBarButtonItem()
+//        backItem.title = "Movie List"
+//        navigationItem.backBarButtonItem = backItem
         
         navigationController?.pushViewController(detailVC, animated: true)
     }

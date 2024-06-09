@@ -10,32 +10,22 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
-    
+    var coordinator: TabBarCoordinator?
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let scene = (scene as? UIWindowScene) else { return }
-        window = UIWindow(windowScene: scene)
-        
-        
-        // Create view controllers to be managed by the tab bar controller
-        let firstViewController = MovieListViewController()
-        firstViewController.view.backgroundColor = .white
-
-        let secondViewController = FavouritesViewController()
-        secondViewController.view.backgroundColor = .white
-
-        // Create the tab bar controller and add view controllers to it
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+        window = UIWindow(windowScene: windowScene)
+                
         let tabBarController = UITabBarController()
-        tabBarController.viewControllers = [firstViewController, secondViewController]
-        let backItem = UIBarButtonItem()
-        backItem.title = "Movie List"
-        tabBarController.navigationItem.backBarButtonItem = backItem
-        window?.rootViewController = UINavigationController(rootViewController: tabBarController)
-        window?.makeKeyAndVisible()
-    }
+        let navigationController = UINavigationController()
+        coordinator = TabBarCoordinator(navigationController: navigationController, tabBarController: tabBarController)
+        coordinator?.start()
+                
+        window?.rootViewController = tabBarController
+        window?.makeKeyAndVisible()    }
     
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
