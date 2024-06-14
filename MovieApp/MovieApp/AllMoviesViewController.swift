@@ -10,12 +10,14 @@ import UIKit
 import PureLayout
 import MovieAppData
 
+typealias AppMovieModel = MovieAppData.MovieModel
+
 class AllMoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     // MARK: - Properties
     
     private var tableView: UITableView!
-    private var movies: [MovieModel] = []
+    private var movies: [AppMovieModel] = []
     
     // MARK: - Initialization
     

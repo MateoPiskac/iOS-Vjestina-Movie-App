@@ -10,7 +10,7 @@ import UIKit
 import PureLayout
 import MovieAppData
 
-class movieDetailsView : UIView{
+class MovieDetailsView : UIView{
     
     // MARK: - Properties
     
@@ -275,4 +275,123 @@ class movieDetailsView : UIView{
         })
     }
     
+}
+
+    //MARK: ActorsGridView
+
+class ActorsGridView: UICollectionView {
+    
+    // MARK: - Properties
+    
+    var elements: [(title: String, subtitle: String)] = []
+    
+    // MARK: - Initialization
+    
+    override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
+        super.init(frame: frame, collectionViewLayout: layout)
+        setupCollectionView()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setupCollectionView()
+    }
+    
+    
+    private func setupCollectionView() {
+        self.backgroundColor = .clear
+        self.delegate = self
+        self.dataSource = self
+        self.register(GridCell.self, forCellWithReuseIdentifier: GridCell.reuseIdentifier)
+        if let layout = self.collectionViewLayout as? UICollectionViewFlowLayout {
+            layout.minimumInteritemSpacing = 10
+            layout.minimumLineSpacing = 10
+            layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        }
+        
+        
+        
+    }
+}
+
+// MARK: - UICollectionViewDelegateFlowLayout & UICollectionViewDataSource
+
+extension ActorsGridView: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return elements.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GridCell.reuseIdentifier, for: indexPath) as? GridCell else {
+            fatalError("Unable to dequeue GridCell")
+        }
+        
+        let element = elements[indexPath.item]
+        cell.nameLabel.text = element.title
+        cell.roleLabel.text = element.subtitle
+        
+        return cell
+    }
+    
+    // MARK: UICollectionViewDelegateFlowLayout Methods
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 110, height: 40) // Set each item size to 80px wide by 40px tall
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10) // Adjust as needed
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 10 // Vertical spacing
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 10 // Horizontal spacing
+    }
+}
+
+
+class GridCell: UICollectionViewCell {
+    
+    // MARK: - Grid Cell
+    
+    
+    static let reuseIdentifier = "GridCell"
+    
+    let nameLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.font = UIFont.boldSystemFont(ofSize: 16)
+        return label
+    }()
+    
+    let roleLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.textColor = .gray
+        return label
+    }()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        addSubview(nameLabel)
+        addSubview(roleLabel)
+        
+        nameLabel.autoPinEdge(toSuperviewEdge: .top)
+        nameLabel.autoPinEdge(toSuperviewEdge: .leading)
+        nameLabel.autoPinEdge(toSuperviewEdge: .trailing)
+        
+        roleLabel.autoPinEdge(.top, to: .bottom, of: nameLabel, withOffset: 5)
+        roleLabel.autoPinEdge(toSuperviewEdge: .leading)
+        roleLabel.autoPinEdge(toSuperviewEdge: .trailing)
+        roleLabel.autoPinEdge(toSuperviewEdge: .bottom)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }
