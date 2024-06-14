@@ -28,6 +28,11 @@
 		2CECB1782C04BDB500C22762 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CECB1772C04BDB500C22762 /* Coordinator.swift */; };
 		2CECB1802C134FD400C22762 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CECB17F2C134FD400C22762 /* Router.swift */; };
 		2CECB1822C13567900C22762 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CECB1812C13567900C22762 /* TabBarCoordinator.swift */; };
+		2CECB1842C16FFFE00C22762 /* MovieDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CECB1832C16FFFE00C22762 /* MovieDataSource.swift */; };
+		2CECB1862C17005000C22762 /* MovieListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CECB1852C17005000C22762 /* MovieListViewModel.swift */; };
+		2CECB18A2C17042C00C22762 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CECB1892C17042C00C22762 /* APIClient.swift */; };
+		2CECB18C2C17075000C22762 /* FavouritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CECB18B2C17075000C22762 /* FavouritesViewModel.swift */; };
+		2CECB18F2C1C470B00C22762 /* MovieDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CECB18E2C1C470B00C22762 /* MovieDetailsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +54,11 @@
 		2CECB1772C04BDB500C22762 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		2CECB17F2C134FD400C22762 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		2CECB1812C13567900C22762 /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
+		2CECB1832C16FFFE00C22762 /* MovieDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDataSource.swift; sourceTree = "<group>"; };
+		2CECB1852C17005000C22762 /* MovieListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListViewModel.swift; sourceTree = "<group>"; };
+		2CECB1892C17042C00C22762 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		2CECB18B2C17075000C22762 /* FavouritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewModel.swift; sourceTree = "<group>"; };
+		2CECB18E2C1C470B00C22762 /* MovieDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,13 +100,18 @@
 				2C78ED002BBC3A4B00F78116 /* SceneDelegate.swift */,
 				2CECB1812C13567900C22762 /* TabBarCoordinator.swift */,
 				2C45FBE72BFA770D009D4033 /* FavouritesViewController.swift */,
+				2CECB18B2C17075000C22762 /* FavouritesViewModel.swift */,
 				2C78ED022BBC3A4B00F78116 /* ViewController.swift */,
 				2C777D812BEE483300135E35 /* SectionCellView.swift */,
 				2C777D7F2BEE450E00135E35 /* MovieListViewController.swift */,
+				2CECB1832C16FFFE00C22762 /* MovieDataSource.swift */,
+				2CECB1892C17042C00C22762 /* APIClient.swift */,
+				2CECB1852C17005000C22762 /* MovieListViewModel.swift */,
 				2C777D832BF099C700135E35 /* AllMoviesViewController.swift */,
 				2CECB1772C04BDB500C22762 /* Coordinator.swift */,
 				2CECB17F2C134FD400C22762 /* Router.swift */,
 				2C777D852BF09B0000135E35 /* MovieTableVIewCell.swift */,
+				2CECB18E2C1C470B00C22762 /* MovieDetailsViewModel.swift */,
 				2C78ED1F2BC4669400F78116 /* MovieDetailsViewController.swift */,
 				2C7167122BC7FC1F00AA944B /* MovieDetailsView.swift */,
 				2C78ED042BBC3A4B00F78116 /* Main.storyboard */,
@@ -192,10 +207,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C78ED202BC4669400F78116 /* MovieDetailsViewController.swift in Sources */,
+				2CECB18A2C17042C00C22762 /* APIClient.swift in Sources */,
+				2CECB18C2C17075000C22762 /* FavouritesViewModel.swift in Sources */,
 				2C78ED032BBC3A4B00F78116 /* ViewController.swift in Sources */,
 				2C777D862BF09B0000135E35 /* MovieTableVIewCell.swift in Sources */,
 				2C78ECFF2BBC3A4B00F78116 /* AppDelegate.swift in Sources */,
 				2C777D842BF099C700135E35 /* AllMoviesViewController.swift in Sources */,
+				2CECB18F2C1C470B00C22762 /* MovieDetailsViewModel.swift in Sources */,
+				2CECB1842C16FFFE00C22762 /* MovieDataSource.swift in Sources */,
 				2C777D802BEE450E00135E35 /* MovieListViewController.swift in Sources */,
 				2CECB1822C13567900C22762 /* TabBarCoordinator.swift in Sources */,
 				2CECB1782C04BDB500C22762 /* Coordinator.swift in Sources */,
@@ -204,6 +223,7 @@
 				2C45FBE82BFA770D009D4033 /* FavouritesViewController.swift in Sources */,
 				2C777D822BEE483300135E35 /* SectionCellView.swift in Sources */,
 				2CECB1802C134FD400C22762 /* Router.swift in Sources */,
+				2CECB1862C17005000C22762 /* MovieListViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

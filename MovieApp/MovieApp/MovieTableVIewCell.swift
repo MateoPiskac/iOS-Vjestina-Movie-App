@@ -107,7 +107,7 @@ class MovieTableViewCell: UITableViewCell {
         summaryLabel.autoPinEdge(toSuperviewEdge: .bottom, withInset: 10)
     }
     
-    func configure(with movie: MovieModel) {
+    func configure(with movie: AppMovieModel) {
         titleLabel.text = movie.name
         summaryLabel.text = movie.summary
         posterImageView.kf.setImage(with: URL(string : movie.imageUrl),placeholder: UIImage(named: "no_network_placeholder"))
